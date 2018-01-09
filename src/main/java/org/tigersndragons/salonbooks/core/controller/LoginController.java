@@ -13,11 +13,12 @@ import org.tigersndragons.salonbooks.service.flow.LoginService;
 @Controller
 //@RequestMapping("/")
 public class LoginController {
-  	@Autowired
+	/*
+	@Autowired
 	private LoginService loginService;
 //	@Autowired
 //	LoginFlowActions loginActionFlows;
-	
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String showLogin(
 			//@ModelAttribute("loginFlowActions") LoginFlowActions loginFlowActions, 
@@ -27,7 +28,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String doLogin(@ModelAttribute("loginFlowActions") LoginFlowActions loginFlowActions, 
+	public String doLogin(@ModelAttribute("loginFlowActions") LoginFlowActions loginActionFlows, 
 			Model model){
 		if (loginService.doLogin()!=null){
 			model.addAttribute("employee", loginService.doLogin());
@@ -45,5 +46,7 @@ public class LoginController {
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
 	}
-	 
+	
+	public void 
+	 */
 }

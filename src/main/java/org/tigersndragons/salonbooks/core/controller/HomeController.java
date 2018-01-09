@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.tigersndragons.salonbooks.model.Employee;
 import org.tigersndragons.salonbooks.model.Person;
 import org.tigersndragons.salonbooks.model.flows.HomeFlowActions;
 import org.tigersndragons.salonbooks.model.flows.LoginFlowActions;
@@ -30,22 +31,28 @@ public class HomeController {
   	HomeFlowActions homeFlowActions;
   	@Autowired
 	private LoginService loginService;
-	@Autowired
+	//@ModelAttribute("loginFlowActions")
+	//@Autowired
 	LoginFlowActions loginActionFlows;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String showLogin(Model model){
+		if (loginActionFlows ==null ){
+			loginActionFlows = new LoginFlowActions();
+		}
+		model.addAttribute("loginActionFlows",loginActionFlows);
 		return "login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String doLogin(@ModelAttribute("loginFlowActions") LoginFlowActions loginFlowActions, 
+	public String doLogin(@ModelAttribute("loginActionFlows") LoginFlowActions loginActionFlows, 
 			BindingResult result,
 			Model model){
-		if (loginService.doLogin()!=null 
+		Employee employee = loginService.doLogin();
+		if (employee!=null 
 				|| !result.hasErrors()){
-			model.addAttribute("employee", loginService.doLogin());
-			result.getModel().put("employee", loginService.doLogin());
+			model.addAttribute("employee", employee);
+			result.getModel().put("employee", employee);
 			result.getModel().put("homeFlowActions", homeFlowActions);
 			return "redirect:/home";
 		}else{
@@ -102,4 +109,9 @@ public class HomeController {
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
 	}
+
+	public void setLoginActionFlows(LoginFlowActions loginActionFlows) {
+		this.loginActionFlows = loginActionFlows;
+	}
+	
 }

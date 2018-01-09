@@ -18,7 +18,7 @@
 	<div>Today is <joda:format value="${now}" pattern="MM dd, YYYY"/></div>
 
 		<form:form id="login" 
-		modelAttribute="loginFlowActions" 
+		modelAttribute="loginActionFlows" 
 		action="${flowExecutionUrl}" >
 	
       <input type="hidden" name="_flowExecutionKey" 

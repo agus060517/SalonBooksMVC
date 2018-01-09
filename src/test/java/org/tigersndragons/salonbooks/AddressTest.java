@@ -1,12 +1,14 @@
 package org.tigersndragons.salonbooks;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.hamcrest.core.Is;
 import org.hibernate.exception.ConstraintViolationException;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -65,8 +67,8 @@ public class AddressTest extends BaseTestCase {
 		assertTrue(e1.equals(e2));
 		assertTrue(e1.getCity().equals(e2.getCity()));
 		e2.setId(1L);
-		assertFalse(e1.equals(e2));		
-		assertTrue(e1.getCity().equals(e2.getCity()));
+		assertFalse(e1.equals(e2));
+		assertThat(e1.getCity(), Is.is(e2.getCity()));
 	}
 	
 	private Address theDefaultAddress(){

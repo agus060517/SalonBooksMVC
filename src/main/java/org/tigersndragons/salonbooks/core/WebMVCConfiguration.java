@@ -154,6 +154,7 @@ public class WebMVCConfiguration extends WebMvcConfigurerAdapter {
 //		controller.setPersonService(serviceConfig.personService());
 //		controller.setAppointmentService(serviceConfig.appointmentService());
 		controller.setHomeFlowActions(homeFlowActions());
+		controller.setLoginActionFlows(loginActionFlows());;
 		controller.setLoginService(loginService());
 		return controller;
 	}
